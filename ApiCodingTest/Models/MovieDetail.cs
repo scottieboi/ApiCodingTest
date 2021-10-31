@@ -16,10 +16,6 @@ namespace ApiCodingTest.Models
         
         public DateTime LastUpdated { get; set; }
         
-        public string Title { get; set; }
-        
-        public string Year { get; set; }
-        
         public string Rated { get; set; }
         
         public string Released { get; set; }
@@ -49,6 +45,8 @@ namespace ApiCodingTest.Models
         public string Votes { get; set; }
         
         public string Type { get; set; }
+        
+        public string Price { get; set; }
         
         public Movie Movie { get; set; }
     }

@@ -10,8 +10,12 @@ namespace ApiCodingTest.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        public ICollection<MovieDetail> MovieDetails { get; set; }
+        [Required]
+        public string Title { get; set; }
         
-        public ICollection<MoviePrice> MoviePrices { get; set; }
+        [Required]
+        public string Year { get; set; }
+        
+        public ICollection<MovieDetail> MovieDetails { get; set; }
     }
 }

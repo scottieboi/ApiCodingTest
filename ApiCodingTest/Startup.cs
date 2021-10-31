@@ -1,8 +1,10 @@
 using System;
 using ApiCodingTest.Dtos;
+using ApiCodingTest.Models;
 using ApiCodingTest.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,9 +28,12 @@ namespace ApiCodingTest
             services.AddTransient<IMoviesService, MoviesService>();
             services.AddHttpClient("movies", c =>
             {
-                c.BaseAddress = new Uri(Environment.GetEnvironmentVariable("API_BASE_URL") ?? string.Empty);
+                c.BaseAddress = new Uri(Environment.GetEnvironmentVariable("API_BASE_URL"));
                 c.DefaultRequestHeaders.Add("x-access-token", Environment.GetEnvironmentVariable("API_ACCESS_TOKEN"));
             });
+
+            services.AddDbContext<MoviesContext>(opts =>
+                opts.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
